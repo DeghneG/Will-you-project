@@ -59,6 +59,26 @@ yesBtn.addEventListener('click', () => {
 });
 
 /* ─────────────────────────────────────────────
+   AUDIO PLAYBACK
+───────────────────────────────────────────── */
+const bgMusic = document.getElementById('bg-music');
+
+// Browsers block autoplay until the user interacts with the document.
+// We try to play it on the first click/touch anywhere.
+function startAudio() {
+    bgMusic.play().catch(() => {
+        // Ignore errors if it's already playing or still blocked
+    });
+    // Remove the listeners once audio starts successfully
+    document.removeEventListener('click', startAudio);
+    document.removeEventListener('touchstart', startAudio);
+}
+
+document.addEventListener('click', startAudio);
+document.addEventListener('touchstart', startAudio);
+
+
+/* ─────────────────────────────────────────────
    FLOATING HEARTS BACKGROUND
 ───────────────────────────────────────────── */
 const heartsContainer = document.getElementById('hearts-bg-container');
