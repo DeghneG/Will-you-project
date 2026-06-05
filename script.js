@@ -29,8 +29,8 @@ function showFloatingNo() {
     noBtnFloat.style.top  = cardRect.top  + 'px';
     noBtnFloat.classList.remove('hidden');
 
-    // Hide the card's No so there's no duplicate
-    noBtnCard.classList.add('hidden');
+    // Hide the card's No so there's no duplicate but keep its space
+    noBtnCard.classList.add('invisible');
 }
 
 function teleportNo() {

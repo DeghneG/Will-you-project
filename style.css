@@ -222,3 +222,8 @@ body {
 .hidden {
     display: none !important;
 }
+
+.invisible {
+    visibility: hidden !important;
+    pointer-events: none;
+}
