@@ -227,3 +227,18 @@ body {
     visibility: hidden !important;
     pointer-events: none;
 }
+
+/* ===== FOOTER ===== */
+.footer {
+    position: fixed;
+    bottom: 12px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #c06070;
+    font-family: 'Poppins', sans-serif;
+    z-index: 50;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+}
