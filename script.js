@@ -62,20 +62,31 @@ yesBtn.addEventListener('click', () => {
    AUDIO PLAYBACK
 ───────────────────────────────────────────── */
 const bgMusic = document.getElementById('bg-music');
+bgMusic.volume = 0.3; // Set volume to 30%
 
 // Browsers block autoplay until the user interacts with the document.
-// We try to play it on the first click/touch anywhere.
+// We try to play it as aggressively as possible on any interaction.
 function startAudio() {
-    bgMusic.play().catch(() => {
-        // Ignore errors if it's already playing or still blocked
+    bgMusic.play().then(() => {
+        // If successful, remove all these event listeners
+        document.removeEventListener('click', startAudio);
+        document.removeEventListener('touchstart', startAudio);
+        document.removeEventListener('mousemove', startAudio);
+        document.removeEventListener('keydown', startAudio);
+        document.removeEventListener('scroll', startAudio);
+    }).catch(() => {
+        // Ignore errors if it's still blocked
     });
-    // Remove the listeners once audio starts successfully
-    document.removeEventListener('click', startAudio);
-    document.removeEventListener('touchstart', startAudio);
 }
 
+// Attach to almost every possible first interaction
 document.addEventListener('click', startAudio);
 document.addEventListener('touchstart', startAudio);
+document.addEventListener('mousemove', startAudio);
+document.addEventListener('keydown', startAudio);
+document.addEventListener('scroll', startAudio);
+// Try immediately just in case
+startAudio();
 
 
 /* ─────────────────────────────────────────────
